@@ -1,0 +1,53 @@
+
+<html>
+      <head>
+       
+      </head>
+      <body>
+          <div id="aGroupOfElements">
+              <h1>My Report</h1>
+              <p>The price was £10.00</p>
+              <p>The rating was 9/10</p>
+              <button id="myBtn">Click me!</button>
+          </div>
+          <div id="aSecondGroupOfElements">
+            <h1>My Extra Report</h1>
+            <p>The price was £20.00</p>
+          </div>
+          <script>
+            let element       = document.getElementById('aGroupOfElements');
+            let secondElement = document.getElementById('aSecondGroupOfElements');
+            let myBtn         = document.getElementById('myBtn');
+
+            function reportBtnEventFn() {
+                element.style.backgroundColor = 'red';
+                element.style.color = 'white';
+                element.style.padding = '1em'
+                secondElement.style.backgroundColor = 'green';
+                secondElement.style.color = 'white';
+                secondElement.style.padding = '1em';
+
+
+                if(secondElement.style.display == 'block') {
+                    secondElement.style.display = 'none';
+                } else {
+                    secondElement.style.display = 'block';
+                }
+                
+            }
+
+            function keybEventFn(event) {
+                if(event.key == 'a') {
+                    element.style.backgroundColor = 'aliceblue';
+                    element.style.color = 'black';
+                } else if(event.key == '1') {
+                    element.style.backgroundColor = 'white';
+                    element.style.color = 'black';
+                } 
+            }
+
+            document.addEventListener('keyup', keybEventFn);
+            myBtn.addEventListener('click', reportBtnEventFn);
+         </script>
+       </body>
+   </html>

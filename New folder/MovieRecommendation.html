@@ -1,0 +1,33 @@
+<html>
+<head>
+<style>
+    h3{
+        color:blueviolet;
+    }
+    body{
+        background-color: grey;
+    }
+</style>
+</head>
+
+<body>
+<h3 id="movie"> 
+
+</h3>
+<script>
+    const age = parseInt(prompt("Enter your age"));
+
+if (age <= 12) {
+    console.log("Recommend movie: Muppets");
+    document.getElementById("movie").innerText = "I recommend Muppets"
+}   else if (age <= 17) {
+    console.log("Recommend movie: Pirates of the carribean");
+    document.getElementById("movie").innerText = "I recommend Pirates of the carribean"
+}   else {
+    console.log("Recommend movie: Die hard ");
+    document.getElementById("movie").innerText = "I recommend Die hard"
+}
+</script>    
+</body>
+</html>
+

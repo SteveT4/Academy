@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-size: 2em;
+        }
+
+        #chartContainer {
+            height: 800px;
+        }
+
+        h1 {color: rebeccapurple;
+            text-align: center;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body>
+
+    <h1>Movies Chart</h1>
+    <div id="chartContainer"><canvas id="myChart"></canvas></div>
+
+
+    <script>
+
+        const newButton = document.createElement('button');
+        newButton.textContent = 'Click me!';
+        document.body.appendChild(newButton);
+
+        newButton.addEventListener('click', () => {
+            alert('New button clicked!');
+        });
+
+
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Gone In 60 Seconds', 'Transformers', 'Lake Placid', 'Toy Story', 'Die Hard', 'Pet Semetary'
+                ],
+                datasets: [{
+                    data: [12, 19, 3, 5, 2, 15],
+                }] 
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: false,
+                            text: 'movies'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,  
+                        title: {
+                            display: false,
+                            text: 'Votes'
+                        }
+                    }
+                }
+            }
+        });
+
+        
+    </script>
+
+</body>
+
+</html>

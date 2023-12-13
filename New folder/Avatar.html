@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Builder</title>
+    <style>
+        /* CSS for styling the avatar builder */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        #avatar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        #avatar {
+            width: 120px;
+            height: 140px;
+            background-color: #3498db;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+
+        
+
+        
+.ears {
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
+
+.ear {
+    width: 40px;
+    height: 80px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+}
+
+
+
+.eyes {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.eye {
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.nose {
+    width: 10px;
+    height: 10px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.mouth {
+    width: 60px;
+    height: 20px;
+    background-color: #c0392b;
+    border-radius: 10px;
+    margin-top: -40px;
+}
+        
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Avatar Builder</h1>
+    <div id="avatar-container">
+        <div id="avatar">
+
+            <div class="ears">
+                <div class="ear"></div>
+                <div class="ear"></div>
+            </div>
+                <div class="eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+        
+        </div>
+       
+    
+        
+        <div class="button-container">
+            <button onclick="changeColor()">Change Color</button>
+            <button onclick="resetAvatar()">Reset</button>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript for building the avatar
+        const avatar = document.getElementById('avatar');
+
+        function changeColor() {
+            const randomColor = getRandomColor();
+            avatar.style.backgroundColor = randomColor;
+        }
+
+        function resetAvatar() {
+            avatar.style.backgroundColor = '#3498db'; // Reset to default color
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>

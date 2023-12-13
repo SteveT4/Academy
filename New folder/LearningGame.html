@@ -1,0 +1,345 @@
+<!-- STAGE 3: initial styling with css -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Complete</title>
+    <style>
+        body {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 1.8em;
+            padding: 1em;
+
+            background-color: rgb(10%, 12%, 13%);
+
+        }
+
+        section {
+            /* turn off all the sections: */
+            display:block;
+
+
+            width: 33vw;
+            padding: 0.5em;
+            background-color: white;
+            box-shadow: 5px 5px 2px rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        div {
+            margin: 0.5em;
+        }
+
+        button {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 2em;
+            width: 1.5em;
+            height: 1.5em;
+            opacity: 0.5;
+        }
+
+        button:hover {
+            opacity: 1.0;
+        }
+
+
+        #start-button {
+            width: 100%;
+            border: 10px solid rgb(10%, 12%, 13%);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            border: 10px solid rgb(10%, 12%, 13%);
+            border-radius: 5px;
+
+        }
+
+        h2 {
+            text-decoration: underline;
+            text-decoration-thickness: 10px;
+        }
+
+
+        .question {
+            padding-bottom: 0.5em;
+            /* border-bottom: 1px solid  lightgray; */
+        }
+
+        .question code {
+            color: crimson;
+        }
+
+
+        .options {
+            margin: 1em;
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        /* 
+            ADVANCED:
+                style code
+                style the "question" differently than the options
+        */
+    </style>
+</head>
+
+<body>
+    <section id="title-container">
+        <h1>Welcome</h1>
+        <p>You're about to embark on a code adventure!</p>
+        <button type="button" id="start-button">Start!</button>
+    </section>
+
+    <hr />
+
+    <section id="question-container" class="question-card">
+        <div class="question">
+            <h2 id="question-heading">Question ...</h2>
+            <p id="question-guidance">...</p>
+            <code id="question-code">...</code>
+        </div>
+        <div class="options">
+            <button id="option-1" type="button" class="answer-button">...</button>
+            <button id="option-2" type="button" class="answer-button">...</button>
+            <button id="option-3" type="button" class="answer-button">...</button>
+        </div>
+    </section>
+
+    <hr />
+
+    <section id="answer-container" class="answer-card">
+        <div class="question">
+            <h2>Answer 1</h2>
+            <code>let name = "Hell<span>"</span></code>
+        </div>
+        <div class="explanation">
+            <p>The next symbol should be a double quote!</p>
+        </div>
+    </section>
+
+    <hr />
+
+
+
+    <script>
+        let titleSection = document.getElementById('title-container');
+
+        let qSection = document.getElementById('question-container');
+        let aSection = document.getElementById('answer-container');
+
+        let startBtn = document.getElementById('start-button');
+
+        let qHead = document.getElementById('question-heading');
+        let qGuide = document.getElementById('question-guidance');
+        let qCode = document.getElementById('question-code');
+        let opBtn1 = document.getElementById('option-1');
+        let opBtn2 = document.getElementById('option-2');
+        let opBtn3 = document.getElementById('option-3');
+
+
+
+
+        // SHOWING THE CARDS
+
+        const query = window.location.search;
+
+        const cName = query.split('&').at(0);
+
+
+        // the question we're on!
+
+        let qNumber = parseInt(query.split('question=').at(1));
+
+        console.log(qNumber);
+
+
+        /*
+                            [0]                    [1]           [2]
+        let questionCodes = [ 'function get() {',  'let name',   '3 * 10 -'];
+        let options1      = ['}',                  '='       ,   '1'];
+        let options2      = ['*',                  '=='      ,   '"'];
+        let options3      = ['{',                  '!'       ,   '`'];
+        */
+        let quizSpec = [
+            {
+                "code": "function multiply(a, b) {",
+                "answer": "}",
+                "options": ["}", "*", "{", "("]
+            },
+            {
+                "code": "let arr = [1, 2, 3];",
+                "answer": ";",
+                "options": ["[", ";", "]", ":"]
+            },
+            {
+                "code": "const add = (x, y) => {",
+                "answer": "};",
+                "options": ["};", "{", ")", "=>"]
+            },
+            {
+                "code": "for (let i = 0; i < 5; i++) {",
+                "answer": "}",
+                "options": ["}", "(", "[", "++"]
+            },
+            {
+                "code": "if (condition) {",
+                "answer": "}",
+                "options": ["}", "{", "(", ")"]
+            },
+            {
+                "code": "const greet = function(name) {",
+                "answer": "};",
+                "options": ["};", "(", "{", "=>"]
+            },
+            {
+                "code": "let x = 10;",
+                "answer": ";",
+                "options": [";", ":", "(", ")"]
+            },
+            {
+                "code": "while (i < 10) {",
+                "answer": "}",
+                "options": ["}", "(", "{", "<"]
+            },
+            {
+                "code": "const sum = (a, b) => {",
+                "answer": "};",
+                "options": ["};", "{", "(", "=>"]
+            },
+            {
+                "code": "switch (value) {",
+                "answer": "}",
+                "options": ["}", "{", "(", ")"]
+            }
+        ];
+
+
+
+        function showQuestion() {
+            console.log("HERE!");
+
+
+            qSection.style.display = 'block';
+
+            qHead.innerHTML = `Question ${qNumber}`;
+            qGuide.innerHTML = 'Choose something!';
+
+            // Q. set this to be an element of codes
+            qCode.innerHTML = quizSpec[qNumber].code;
+
+            //Q. set this to be an element of options
+            opBtn1.innerHTML = quizSpec[qNumber].options[0];
+
+            //Q. set this to be an element of options
+            opBtn2.innerHTML = quizSpec[qNumber].options[1];
+
+            //Q. set this to be an element of options
+            opBtn3.innerHTML = quizSpec[qNumber].options[2];
+
+            //HINT: to find qNumber in an array, write: array[qNumber]
+        }
+        // Q. open your html file with the following query at the end
+        // yourhtmlfile.html?card=question&question=1
+        //... confirm you can see Question 1
+
+        //Q. try out changing the url to .. question=2, etc. 
+        //... confirm the question title changes
+
+        if (cName == '?card=title') {
+            titleSection.style.display = 'block';
+        }
+
+        else if (cName == '?card=question') {
+            showQuestion();
+        }
+
+        else if (cName == '?card=answer') {
+            aSection.style.display = 'block';
+        }
+
+
+        // ADVANCED. replace all four variables above
+        // with a single variable called `quizSpec`
+        //... this should be an array of objects
+        //... revise the above to work with this array of objects
+
+
+
+
+        // ATTACHING THE EVENTS
+        function runQuiz(questionNumber) {
+            qSection.style.display = 'block';
+
+
+            qHead.innerHTML = `Question ${questionNumber}`;
+            qGuide.innerHTML = 'Choose something!';
+
+            qCode.innerHTML = quizSpec[questionNumber].code;
+            opBtn1.innerHTML = quizSpec[questionNumber].options[0];
+            opBtn2.innerHTML = quizSpec[questionNumber].options[1];
+            opBtn3.innerHTML = quizSpec[questionNumber].options[2];
+        }
+
+
+
+
+        function runAnswerBtn(event) {
+            let content = event.target.innerHTML;
+
+            if (content == quizSpec[qNumber].answer) {
+                qNumber += 1;
+                showQuestion();
+            } else {
+                alert("NO!");
+            }
+        }
+
+        opBtn1.addEventListener('click', runAnswerBtn);
+        opBtn2.addEventListener('click', runAnswerBtn);
+        opBtn3.addEventListener('click', runAnswerBtn);
+
+
+
+        startBtn.addEventListener('click', () => runQuiz(0));
+
+
+        /*
+        
+        IMMEDIATE:
+        - revise `runAnswerBtn` so that it advances to the answer screen
+            - define a `showAnswerScreen` function
+            - run this when a button is pressed
+            - set the message to a "Well Done!" or "No!" depending
+        
+
+        - keep a running total of the learner's score
+            - update it when an answer button is pressed
+
+
+        - create a final score report
+
+
+        ADVANCED:
+
+        - replace quizSpec with an api call
+        - use chatgpt to generate question answers
+            - use these in a faked json file. 
+
+        - add a different question type!
+            - be imaginative!
+        */
+    </script>
+</body>
+
+</html>

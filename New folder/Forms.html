@@ -1,0 +1,54 @@
+<html>
+<head>
+    <style>
+        h1.myheading {
+            color: Seagreen;
+        }
+        h1.yourheading {
+            color: goldenrod;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 class="yourheading">My Profile</h1>
+    <p>Hello, I'm Steve</p>
+
+
+    <form name="myForm" action="" method="GET">
+        Enter something in the box: <br>
+        <input type=""text" name="inputbox" value="">
+        <input type="button" name="button" value="Click" onClick="testResults(this.form)">
+    </form>
+
+    
+
+    <h2>Interests</h2>
+    <ul>
+        <li>Programming</li>
+        <li>Philosophy</li>
+        <li>Snowboarding</li>
+    </ul>
+
+
+    
+    <script>
+
+    function testResults (form) {
+        let inputValue = form.inputbox.value;
+        alert ("You typed:" + " " + inputValue);
+    }
+
+
+        let heading = document.querySelector('h2');
+        heading.textContent = 'Interests';
+        heading.style.color = 'royalBlue';
+
+       
+
+    </script>
+        
+</body>
+</html>

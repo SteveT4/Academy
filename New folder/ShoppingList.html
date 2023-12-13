@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shopping App</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.3.0/umd/react-router-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { BrowserRouter, Route, Link } = ReactRouterDOM;
+
+        // Product List component
+        const ProductList = () => {
+            return (
+                <div>
+                    <h1>Product List</h1>
+                    <ul>
+                        <li><Link to="/product/1">Product 1</Link></li>
+                        <li><Link to="/product/2">Product 2</Link></li>
+                        <li><Link to="/product/3">Product 3</Link></li>
+                    </ul>
+                </div>
+            );
+        };
+
+        // Product Detail component
+        const ProductDetail = ({ match }) => {
+            const { params } = match;
+            return (
+                <div>
+                    <h2>Product Detail</h2>
+                    <p>Product ID: {params.id}</p>
+                </div>
+            );
+        };
+
+        // App component with routing
+        const App = () => {
+            return (
+                <BrowserRouter>
+                    <div>
+                        <nav>
+                            <ul>
+                                <li><Link to="/">Home</Link></li>
+                                <li><Link to="/products">Products</Link></li>
+                            </ul>
+                        </nav>
+
+                        <hr />
+
+                        <Route exact path="/" render={() => <h1>Home</h1>} />
+                        <Route path="/products" component={ProductList} />
+                        <Route path="/product/:id" component={ProductDetail} />
+                    </div>
+                </BrowserRouter>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CV</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #mouseoverDiv {
+            background-color: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #949191;
+            border-radius: 5px;
+        }
+        
+        #email {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My CV</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Welcome to my CV! I am a passionate web developer.</p>
+            <button id="clickButton">Click Me</button>
+        </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <p>Years of experience in web development.</p>
+            <div id="mouseoverDiv">Hover over me</div>
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <p>Graduated with a degree in Computer Science.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <input type="text" id="keyupInput" placeholder="Type here">
+            <p>Contact me at: <span id="email"></span></p>
+        </section>
+    </main>
+    <script>
+        // JavaScript code goes here
+        window.addEventListener('load', function() {
+            alert('Welcome to my CV!');
+        });
+        
+        document.getElementById('clickButton').addEventListener('click', function() {
+            alert('You clicked the button!');
+        });
+        
+        document.getElementById('mouseoverDiv').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#ff9900';
+        });
+        
+        document.getElementById('mouseoverDiv').addEventListener('mouseout', function() {
+            this.style.backgroundColor = '#ffcc00';
+        });
+        
+        document.getElementById('keyupInput').addEventListener('keyup', function() {
+            const emailSpan = document.getElementById('email');
+            emailSpan.textContent = this.value;
+        });
+    </script>
+</body>
+</html>

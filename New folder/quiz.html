@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-top: 30px;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  input[type="radio"] {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 30px;
+  }
+  
+  #feedback {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+</style>
+
+</head>
+<body>
+  <h1>Interactive Quiz</h1>
+
+  <div id="question"></div>
+
+  <form id="quizForm">
+    <h2>Question 1:</h2>
+    <input type="radio" name="q1" value="option1"> Option 1<br>
+    <input type="radio" name="q1" value="option2"> Option 2<br>
+    <input type="radio" name="q1" value="option3"> Option 3<br>
+
+    <h2>Question 2:</h2>
+    <input type="radio" name="q2" value="option1"> Option 1<br>
+    <input type="radio" name="q2" value="option2"> Option 2<br>
+    <input type="radio" name="q2" value="option3"> Option 3<br>
+
+    <h2>Question 3:</h2>
+    <input type="radio" name="q3" value="option1"> Option 1<br>
+    <input type="radio" name="q3" value="option2"> Option 2<br>
+    <input type="radio" name="q3" value="option3"> Option 3<br>
+
+    <button type="submit" id="submitButton">Submit</button>
+  </form>
+
+  <div id="feedback"></div>
+
+  <script src="script.js"></script> 
+
+  <script>
+    
+    const questions = [
+  {
+    question: "Question 1: What is the capital of France?",
+    options: ["Paris", "London", "Berlin"],
+    answer: "Paris"
+  },
+  {
+    question: "Question 2: Which planet is closest to the Sun?",
+    options: ["Venus", "Mercury", "Mars"],
+    answer: "Mercury"
+  },
+  {
+    question: "Question 3: Who painted the Mona Lisa?",
+    options: ["Rembrandt", "Da Vinci", "Picasso"],
+    answer: "Da Vinci"
+  },
+];
+
+// function to display question and options
+function displayQuestion(questionIndex) {
+  const questionElement = document.getElementById("question");
+  const currentQuestion = questions[questionIndex];
+
+  questionElement.innerHTML = currentQuestion.question;
+
+  const optionsHTML = currentQuestion.options.map((option, index) => {
+    return `<input type="radio" name="q${questionIndex + 1}" value="${option}"> ${option}<br>`;
+  }).join("");
+
+  questionElement.innerHTML += optionsHTML;
+}
+
+// function to check answers and provide feedback
+function checkAnswers() {
+  const formElement = document.getElementById("quizForm");
+  const feedbackElement = document.getElementById("feedback");
+
+  formElement.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let correctAnswers = 0;
+
+    questions.forEach((question, index) => {
+      const selectedAnswer = formElement.elements[`q${index + 1}`].value;
+
+      if (selectedAnswer === question.answer) {
+        correctAnswers++;
+      }
+    });
+
+    const feedbackHTML = `You got ${correctAnswers} out of ${questions.length} correct!`;
+    feedbackElement.innerHTML = feedbackHTML;
+  });
+}
+
+// call functions to display question and check answers
+displayQuestion(0);
+checkAnswers();
+    
+</script> 
+
+</body>
+</html>
